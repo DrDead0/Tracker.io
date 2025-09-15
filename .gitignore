@@ -1,0 +1,86 @@
+#############################
+# Node & package managers
+#############################
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+#############################
+# Logs
+#############################
+logs
+*.log
+*.log.*
+log-*.log
+
+#############################
+# Runtime data
+#############################
+pids
+*.pid
+*.seed
+*.pid.lock
+
+#############################
+# Coverage & reports
+#############################
+coverage/
+.nyc_output/
+lcov.info
+
+#############################
+# Build output / caches / temps
+#############################
+dist/
+build/
+.cache/
+.parcel-cache/
+.next/
+out/
+.tmp/
+tmp/
+temp/
+.eslintcache
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+#############################
+# Environment files
+#############################
+.env
+.env.*
+!.env.example
+
+#############################
+# Public build artifacts (if generated)
+#############################
+public/dist/
+public/build/
+
+#############################
+# Editors & IDEs
+#############################
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+#############################
+# OS files
+#############################
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+ehthumbs.db
+
+#############################
+# Misc
+#############################
+node_repl_history
+.npm/
+*.tgz
+*.tar.gz
