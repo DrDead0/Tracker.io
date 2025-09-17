@@ -20,23 +20,27 @@ io.on("connection",(socket)=>{
     
     console.log(`User ${socket.id} connected. Total: ${userCount}, First: ${isFirstUser}`);
     
-    // Send all existing user locations to the new connection
+    // When a new user connects, send all existing user locations to them
     connectedUsers.forEach((location, userId) => {
-        if(userId !== socket.id) {
-            socket.emit("receiveLocation", {id: userId, ...location});
-        }
+        socket.emit("receiveLocation", {id: userId, ...location});
     });
     
     socket.on("checkFirstUser", () => {
-        socket.emit("userStatus", {isFirst: isFirstUser});
         console.log(`Sent user status to ${socket.id}: First=${isFirstUser}`);
     });
     
     socket.on("sendLocation",function(data){
-        console.log(`Location from ${socket.id}:`, data);
+        const isFirstLocation = !connectedUsers.has(socket.id);
         connectedUsers.set(socket.id, data);
         io.emit("receiveLocation",{id:socket.id, ...data});
-    })
+        if (isFirstLocation) {
+            connectedUsers.forEach((location, userId) => {
+                if (userId !== socket.id) {
+                    socket.emit("receiveLocation", {id: userId, ...location});
+                }
+            });
+        }
+    });
     
     socket.on("disconnect",()=>{
         userCount--;
